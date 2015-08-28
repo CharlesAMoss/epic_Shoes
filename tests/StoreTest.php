@@ -56,15 +56,15 @@
         function test_store_save()
         {
             //Arrange
-            $store_name = "Gary's Shoes and Accessories for Today's Woman";
-            $id = 1;
-            $test_store = new Store($store_name, $id);
+            $store_name = "Goody New Shoes";
+            $test_store = new Store($store_name);
 
             //Act
             $test_store->save();
-
+            print_r($test_store);
             //Assert
             $result = Store::getAll();
+            print_r($result);
             $this->assertEquals($test_store, $result[0]);
         }//end test
 

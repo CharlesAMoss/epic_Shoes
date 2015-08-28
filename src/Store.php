@@ -27,12 +27,29 @@
             $this->store_name = $new_store_name;
         }
     //save
+    function save()
+        {
+            $GLOBALS['DB']->exec("INSERT INTO stores_t (store_name) VALUES ('{$this->getStoreName()}');");
+            $this->id=$GLOBALS['DB']->lastInsertId();
+        }
 
     //update
 
     //delete
 
     //get all
+    static function getAll()
+        {
+            $returned_stores = $GLOBALS['DB']->query("SELECT * FROM stores_t ORDER BY store_name;");
+            $stores = array();
+            foreach($returned_stores as $store) {
+                $store_name = $store['store_name'];
+                $id = $store['id'];
+                $new_store = new Store($store_name, $id);
+                array_push($stores, $new_store);
+            }
+            return $stores;
+        }
 
     //delete all
 
