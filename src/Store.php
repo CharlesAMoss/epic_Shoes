@@ -34,6 +34,11 @@
         }
 
     //update
+    function update($new_name)
+        {
+           $GLOBALS['DB']->exec("UPDATE stores_t SET store_name = '{$new_name}' WHERE id = {$this->getId()};");
+           $this->setStoreName($new_name);
+        }
 
     //delete
     function delete()
