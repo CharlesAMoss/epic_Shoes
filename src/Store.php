@@ -16,6 +16,11 @@
         {
             return $this->store_name;
         }
+
+        function getId()
+        {
+            return $this->id;
+        }
     //set
 
     //get all

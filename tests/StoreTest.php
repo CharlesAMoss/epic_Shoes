@@ -34,7 +34,7 @@
 
             //Assert
             $this->assertEquals($store_name, $result);
-            $this->assertEquals($id, $result);
+            $this->assertEquals($id, $result2);
         }//end test
 
     }//end of class
