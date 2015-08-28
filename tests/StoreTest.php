@@ -16,10 +16,10 @@
     class StoreTest extends PHPUnit_Framework_TestCase
     {
 
-        // protected function tearDown()
-        // {
-        //     Store::deleteAll();
-        // }
+        protected function tearDown()
+        {
+            Store::deleteAll();
+        }
 
         function test_store_get()
         {
@@ -61,29 +61,28 @@
 
             //Act
             $test_store->save();
-            print_r($test_store);
+
             //Assert
             $result = Store::getAll();
-            print_r($result);
             $this->assertEquals($test_store, $result[0]);
         }//end test
 
         function test_store_getAll()
         {
             //Arrange
-            $store_name = "Goody New Shoes";
-            $test_store = new Store($store_name);
-            $test_store->save();
-
-            $store_name2 = "Groo''s Shoes";
+            $store_name2 = "Goody New Shoes";
             $test_store2 = new Store($store_name2);
             $test_store2->save();
+
+            $store_name = "Groos Shoes";
+            $test_store = new Store($store_name);
+            $test_store->save();
 
             //Act
             $result = Store::getAll();
 
             //Assert
-            $this->assertEquals([$test_store, $test_store], $result);
+            $this->assertEquals([$test_store2, $test_store], $result);
         }//end test
 
     }//end of class

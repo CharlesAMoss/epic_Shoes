@@ -52,6 +52,10 @@
         }
 
     //delete all
+    static function deleteAll()
+    {
+       $GLOBALS['DB']->exec("DELETE FROM stores_t;");
+    }
 
     //add brand
 
