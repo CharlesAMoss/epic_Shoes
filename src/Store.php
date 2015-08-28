@@ -22,7 +22,10 @@
             return $this->id;
         }
     //set
-
+        function setStoreName($new_store_name)
+        {
+            $this->store_name = $new_store_name;
+        }
     //save
 
     //update
