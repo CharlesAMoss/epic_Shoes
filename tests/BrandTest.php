@@ -20,7 +20,7 @@
         protected function tearDown()
         {
             Store::deleteAll();
-            //Brand::deleteAll();
+            Brand::deleteAll();
         }
 
         function test_brand_get()
@@ -28,7 +28,7 @@
             //Arrange
             $brand_name = "Converse";
             $id = 1;
-            $test_brand = new Store($brand_name, $id);
+            $test_brand = new Brand($brand_name, $id);
 
             //Act
             $result = $test_brand->getBrandName();
@@ -41,4 +41,4 @@
 
     }//end of class
 
-?>        
+?>
