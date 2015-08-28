@@ -12,7 +12,7 @@
             $this->id = $id;
         }
     //get
-        function getName()
+        function getStoreName()
         {
             return $this->store_name;
         }
@@ -23,14 +23,19 @@
         }
     //set
 
-    //get all
+    //save
 
     //update
 
     //delete
 
+    //get all
+
     //delete all
 
+    //add brand
+
+    //get brand
     }//end of class
 
 ?>
