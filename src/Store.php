@@ -36,6 +36,11 @@
     //update
 
     //delete
+    function delete()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM stores_t WHERE id = {$this->getId()};");
+            $GLOBALS['DB']->exec("DELETE FROM brand_store_t WHERE store_id = {$this->getId()};");
+        }
 
     //get all
     static function getAll()
