@@ -152,7 +152,7 @@
             $test_store = new Store($store_name);
             $test_store->save();
 
-            $new_name = "Footlocker";
+            $new_name = "Foot Action";
 
             //Act
             $test_store->update($new_name);
