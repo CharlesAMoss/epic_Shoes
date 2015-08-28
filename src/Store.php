@@ -51,6 +51,20 @@
             return $stores;
         }
 
+    //find
+    static function find($search_id)
+    {
+        $found = null;
+        $stores = Store::getAll();
+        foreach($stores as $store){
+            $store_id = $store->getId();
+            if($store_id == $search_id){
+                $found = $store;
+            }//end of if
+        }//end foreach
+        return $found;
+    }
+
     //delete all
     static function deleteAll()
     {
