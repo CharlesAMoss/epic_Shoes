@@ -1,4 +1,4 @@
-# __
+# _Shoe Store_
 
 #### _A program to list out shoe stores and the brands of shoes they carry built to work with "many to many" mySQL database, 8/28/2015_
 
@@ -28,7 +28,7 @@ _You then only need to start up a local PHP server from within the "web" directo
 
 -> CREATE TABLE stores_t (id serial PRIMARY KEY, store_name varchar (255));
 
--> CREATE TABLE brand_stores_t (id serial PRIMARY KEY, brand_id int, store_id int);
+-> CREATE TABLE brand_store_t (id serial PRIMARY KEY, brand_id int, store_id int);
 
 ```
 
