@@ -24,7 +24,27 @@
         }
     //set
 
+    //save
+        function save()
+        {
+            $GLOBALS['DB']->exec("INSERT INTO brands_t (brand_name) VALUES ('{$this->getBrandName()}');");
+            $this->id=$GLOBALS['DB']->lastInsertId();
+        }
+
+
     //get all
+        static function getAll()
+        {
+            $returned_brands = $GLOBALS['DB']->query("SELECT * FROM brands_t ORDER BY brand_name;");
+            $brands = array();
+            foreach($returned_brands as $brand) {
+                $brand_name = $brand['brand_name'];
+                $id = $brand['id'];
+                $new_brand = new Brand($brand_name, $id);
+                array_push($brands, $new_brand);
+            }
+            return $brands;
+        }
 
     //delete all
         static function deleteAll()
