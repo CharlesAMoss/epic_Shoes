@@ -12,7 +12,10 @@
             $this->id = $id;
         }
     //get
-
+        function getName()
+        {
+            return $this->store_name;
+        }
     //set
 
     //get all

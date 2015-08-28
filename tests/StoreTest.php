@@ -32,7 +32,7 @@
             $result = $test_store->getName();
 
             //Assert
-            $this->assertEquals($name, $result);
+            $this->assertEquals($store_name, $result);
         }//end test
 
     }//end of class
