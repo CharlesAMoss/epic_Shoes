@@ -119,9 +119,28 @@
             $result = Store::find($test_store->getId());
 
             //Assert
-
             $this->assertEquals($test_store, $result);
         }//end test
+
+        function test_store_delete()
+        {
+            //Arrange
+            $store_name2 = "Goody New Shoes";
+            $test_store2 = new Store($store_name2);
+            $test_store2->save();
+
+            $store_name = "Groos Shoes";
+            $test_store = new Store($store_name);
+            $test_store->save();
+
+            //Act
+            $test_store->delete();
+
+            //Assert
+            $result = Store::getAll();
+            $this->assertEquals([$test_store2], Store::getAll());
+        }//end test
+
 
     }//end of class
 
