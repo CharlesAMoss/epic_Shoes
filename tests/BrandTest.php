@@ -14,46 +14,62 @@
     $DB = new PDO($server, $username, $password);
 
 
-    // class BrandTest extends PHPUnit_Framework_TestCase
-    // {
-    //
-    //     protected function tearDown()
-    //     {
-    //         // $GLOBALS['DB']->exec("DELETE FROM brands_stores_t;");
-    //         // Store::deleteAll();
-    //         // Brand::deleteAll();
-    //     }
-    //
-    //     function test_brand_get()
-    //     {
-    //         //Arrange
-    //         $brand_name = "Converse";
-    //         $id = 1;
-    //         $test_brand = new Brand($brand_name, $id);
-    //
-    //         //Act
-    //         $result = $test_brand->getBrandName();
-    //         $result2 = $test_brand->getId();
-    //
-    //         //Assert
-    //         $this->assertEquals($brand_name, $result);
-    //         $this->assertEquals($id, $result2);
-    //     }//end test
-    //
-    //     function test_store_save()
-    //     {
-    //         //Arrange
-    //         $brand_name = "Converse";
-    //         $test_brand = new Brand($brand_name, $id);
-    //
-    //         //Act
-    //         $test_brand->save();
-    //
-    //         //Assert
-    //         $result = Brand::getAll();
-    //         $this->assertEquals($test_brand, $result[0]);
-    //     }//end test
-    //
-    // }//end of class
+    class BrandTest extends PHPUnit_Framework_TestCase
+    {
+
+        protected function tearDown()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM brands_stores_t;");
+            Store::deleteAll();
+            Brand::deleteAll();
+        }
+
+        function test_brand_get()
+        {
+            //Arrange
+            $brand_name = "Converse";
+            $id = 1;
+            $test_brand = new Brand($brand_name, $id);
+
+            //Act
+            $result = $test_brand->getBrandName();
+            $result2 = $test_brand->getId();
+
+            //Assert
+            $this->assertEquals($brand_name, $result);
+            $this->assertEquals($id, $result2);
+        }//end test
+
+        function test_brand_set()
+        {
+            //Arrange
+            $brand_name = "Converse";
+            $id = 1;
+            $test_brand = new Brand($brand_name, $id);
+            $new_name = "Nike";
+
+            //Act
+            $test_brand->setBrandName($new_name);
+            $result = $test_brand->getBrandName();
+
+            //Assert
+            $this->assertEquals($new_name, $result);
+        }//end test
+
+        function test_store_save()
+        {
+            //Arrange
+            $brand_name = "Converse";
+            $test_brand = new Brand($brand_name, $id);
+
+            //Act
+            $test_brand->save();
+
+            //Assert
+            $result = Brand::getAll();
+            $this->assertEquals($test_brand, $result[0]);
+        }//end test
+
+    }//end of class
 
 ?>

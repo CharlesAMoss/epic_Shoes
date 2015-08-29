@@ -24,7 +24,7 @@
             Brand::deleteAll();
         }
 
-        // function test_store_get()
+        function test_store_get()
         {
             //Arrange
             $store_name = "Gary's Shoes and Accessories for Today's Woman";
@@ -164,7 +164,7 @@
             $this->assertEquals($new_name, $test_store->getStoreName());
         }//end test
 
-    //  The below test does not not sure why, using the console in phpmyadmin it seems to add and getBrands() does not throw an error but it returns nothing. I have been using some form of this code all week with no problems ... I guess this is as far As I can get 8/28.
+    //  The below test does not pass, I'm not sure why, using the console in phpmyadmin it seems to add and getBrands() does not throw an error but it returns nothing. I have been using some form of this code all week with no problems ... I guess this is as far As I can get 8/28.
 
         function test_store_addBrand()
         {
