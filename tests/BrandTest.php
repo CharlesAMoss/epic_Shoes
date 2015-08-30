@@ -128,7 +128,7 @@
             $test_brand->addStore($test_store);
 
             //Assert
-            $this->assertEquals($test_brand->getStore(), [$test_store]);
+            $this->assertEquals($test_brand->getStores(), [$test_store]);
         }//end test
 
     }//end of class
