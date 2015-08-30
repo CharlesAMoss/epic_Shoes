@@ -70,7 +70,7 @@
             $this->assertEquals($test_brand, $result[0]);
         }//end test
 
-        function test_store_find()
+        function test_brand_find()
         {
             //Arrange
             $brand_name = "Nike";

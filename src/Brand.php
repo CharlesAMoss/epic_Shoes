@@ -36,7 +36,18 @@
             $this->id=$GLOBALS['DB']->lastInsertId();
         }
     //find
-        
+        static function find($search_id)
+        {
+            $found = null;
+            $brands = Brand::getAll();
+            foreach($brands as $brand){
+                $brand_id = $brand->getId();
+                if($brand_id == $search_id){
+                    $found = $brand;
+                }//end of if
+            }//end foreach
+            return $found;
+        }
 
     //get all
         static function getAll()
