@@ -35,7 +35,8 @@
             $GLOBALS['DB']->exec("INSERT INTO brands_t (brand_name) VALUES ('{$this->getBrandName()}');");
             $this->id=$GLOBALS['DB']->lastInsertId();
         }
-
+    //find
+        
 
     //get all
         static function getAll()
@@ -56,7 +57,9 @@
         {
            $GLOBALS['DB']->exec("DELETE FROM brands_t;");
         }
+    //add store
 
+    //get stores
 
     }//end of class
 
