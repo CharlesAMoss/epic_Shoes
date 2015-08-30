@@ -37,16 +37,13 @@ _An export of this database can be found in the db folder_
 ## Technologies Used
 _This project makes use of PHP, mySQL, the testing framework [PHPUnit](https://phpunit.de/), the micro-framework [Silex](http://silex.sensiolabs.org/), and uses [Twig](http://twig.sensiolabs.org/) templates._
 
-## The story so far...
-_My "store test": function test_store_addBrand() does not pass, I'm not sure why, using the console in phpmyadmin it seems to add and getBrands() does not throw an error but it returns nothing. I have been using some form of this code all week with no problems ... I guess this is as far As I can get 8/28._
-
 ## To do
 
 This project is incomplete:
 
 **Task left to do:**
-* get my last 2 store tests to pass
-* complete the brand tests
+* get my last 2 store tests to pass **completed 8/29**
+* complete the brand tests **completed 8/29**
 * finish client routes
 * finish client twig
 * confirm features
