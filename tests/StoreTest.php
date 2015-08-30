@@ -164,22 +164,22 @@
             $this->assertEquals($new_name, $test_store->getStoreName());
         }//end test
 
-    //  The below test does not pass, I'm not sure why, using the console in phpmyadmin it seems to add and getBrands() does not throw an error but it returns nothing. I have been using some form of this code all week with no problems ... I guess this is as far As I can get 8/28.
-
         function test_store_addBrand()
         {
             //Arrange
             $store_name = "Goody New Shoes";
-            $test_store = new Store($store_name);
+            $id=1;
+            $test_store = new Store($store_name,$id);
             $test_store->save();
 
             $brand_name = "Nike";
-            $test_brand = new Brand($brand_name);
+            $id=1;
+            $test_brand = new Brand($brand_name,$id);
             $test_brand->save();
-            print_r($test_brand);
+
             //Act
             $test_store->addBrand($test_brand);
-            print_r($test_store->getBrands());
+
             //Assert
             $this->assertEquals($test_store->getBrands(), [$test_brand]);
         }//end test

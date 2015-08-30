@@ -28,7 +28,7 @@ _You then only need to start up a local PHP server from within the "web" directo
 
 -> CREATE TABLE stores_t (id serial PRIMARY KEY, store_name varchar (255));
 
--> CREATE TABLE brand_store_t (id serial PRIMARY KEY, brand_id int, store_id int);
+-> CREATE TABLE brands_stores_t (id serial PRIMARY KEY, brand_id int, store_id int);
 
 ```
 
