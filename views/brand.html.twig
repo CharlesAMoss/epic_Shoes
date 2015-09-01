@@ -1,46 +1,39 @@
 <html>
-<head>
-    {% for brand in brands %}
-    <title>{{ brand.getBrandName }}</title>
-</head>
-<body>
-    <h1>{{ brand.getBrandName }}</h1>
-    {% endfor %}
+    <head>
+        <title>Shoe: Brands</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
+    </head>
+    <body>
+        <div class="container">
+            <h1>{{ brand.getBrandName }}</h1>
 
-    {% if stores is not empty %}
-        <p>Here are the categories for this task:</p>
-        <ul>
-            {% for store in  stores %}
-                <li>{{ store.getStoreName }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+            {% if brand_stores is not empty %}
+                <h3>List of stores with {{ brand.getBrandName }}.</h3>
+                <ul>
+                    {% for store in brand_stores %}
+                        <li><strong><a href="/store/{{ store.getId }}">{{ store.getStoreName }}</a></strong></li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <h3>No stores to list!</h3>
+            {% endif %}
 
-    <h4>Add a Store to this Brand:</h4>
+            <h3>Add {{ brand.getBrandName }} to a store:</h3>
+            <form action="/brand/{{ brand.getId }}" method="post">
+                <select class="form-control" id="store_id" name="store_id">
+                        {% for store in all_stores %}
+                            <option value="{{ store.getId }}">{{ store.getStoreName }}</option>
+                        {% endfor %}
+                    </select>
+                    <br>
+                <button type="submit" class="btn btn-success">Submit</button>
+            </form>
+            <br>
 
-    <form action='/brand_store' method='post'>
-        {% for brand in brands %}
-        <input id="brand_id" name="brand_id" type="hidden" value="{{ brand.getId }}">
-        {% endfor %}
-        <label for="store_id">Select a Store</label>
-        <select id='store_id' name='store_id' type='text'>
-            {% for store in stores %}
-            <option value="{{ store.getId }}">
-                {{ store.getStoreName }}
-            </option>
-            {% endfor %}
-        </select>
-
-        <button class="btn btn-success" type='submit'>Add Store</button>
-    </form>
-
-    <form action='/delete_all' method='post'>
-        <label>This button will delete all listsings</label>
-        <button class="btn btn-danger" type='submit'>Clear All</button>
-    </form>
-
-    <p><a href='/all_brands'>more brands</a></p>
-    <p><a href='/'>Home</a></p>
-</body>
+            <form action="/">
+                <button type="submit" class="btn btn-primary">Home</button>
+            </form>
+        </div>
+    </body>
 </html>

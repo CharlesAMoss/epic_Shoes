@@ -11,11 +11,11 @@
             <h2>Brand with store listing:</h2>
             <ul>
                 {% for brand in brands %}
-                <li>{{ brand.getBrandName }}</li>
+                <li><a href="/brand/{{ brand.getId }}">{{ brand.getBrandName }}</a></li>
                 {% set stores = brand.getStores %}
                 {% for store in stores %}
                 <ul>
-                    <li>{{ store.getStoreName }}</li>
+                    <li><a href="/store/{{ store.getId }}">{{ store.getStoreName }}</a></li>
                 </ul>
                 <br/>
                 {% endfor %}
@@ -23,31 +23,26 @@
         </ul>
         {% endif %}
 
-        <h4>Add a Brand</h4>
+        <h4>Add a Store</h4>
 
-        <form action='/brand_store' method='post'>
-            {% for brand in brands %}
-            <input id="brand_id" name="brand_id" type="hidden" value="{{ brand.getId }}">
-            {% endfor %}
-            <label for="store_id">Select a Store</label>
-            <select id='store_id' name='store_id' type='text'>
-                {% for store in stores %}
-                <option value="{{ store.getId }}">
-                    {{ store.getStoreName }}
-                </option>
-                {% endfor %}
-            </select>
+        <form action='/store_brand' method='post'>
+            <label for='brand_name'>Brand Name:</label>
+            <input id='brand_name' name='brand_name' placeholder='Nike' type='text'>
 
-            <button class="btn btn-success" type='submit'>Add Store</button>
+            <button type='submit'>Add</button>
         </form>
 
+        <p>
+            <a href='/store_brand'>Add a Store!</a>
+        </p>
 
         <form action='/delete_all' method='post'>
-            <label>This button will delete all listsings</label>
-            <button class="btn btn-danger" type='submit'>Clear All</button>
+            <button type='submit'>Clear All</button>
         </form>
 
-        <p><a class="btn btn-primary" href='/'>Home</a></p>
+        <p>
+            <a href='/'>Home</a>
+        </p>
 
     </div>
 </body>

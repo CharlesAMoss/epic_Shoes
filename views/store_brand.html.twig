@@ -16,11 +16,11 @@
                 <p>Here are some stores!</p>
                 <ul>
                     {% for store in stores %}
-                    <li>{{ store.getStoreName }}</li>
+                    <li><a href="/store/{{ store.getId }}">{{ store.getStoreName }}</a></li>
                     {% set brands = store.getBrands %}
                     {% for brand in brands %}
                     <ul>
-                        <li>{{ brand.getBrandName }}</li>
+                        <li><a href="/brand/{{ brand.getId }}">{{ brand.getBrandName }}</a></li>
                     </ul>
                     <br/>
                     {% endfor %}
@@ -35,11 +35,13 @@
             <form action='/store_brand' method='post'>
                 <label for='store_name'>Shoe Store:</label>
                 <input id='store_name' name='store_name' placeholder='Payless' type='text'>
-                <label for='brand_name'>Brand Name:</label>
-                <input id='brand_name' name='brand_name' placeholder='Nike' type='text'>
 
                 <button type='submit'>Add</button>
             </form>
+
+            <p>
+                <a href='/brand_store'>Add a Brand!</a>
+            </p>
 
             <form action='/delete_all' method='post'>
                 <button type='submit'>Clear All</button>

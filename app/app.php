@@ -25,9 +25,25 @@
     });
 
     $app->get("/brand/{id}", function($id) use ($app) {
-       $store = Brand::find($id);
-       return $app['twig']->render('brand.html.twig, ', array('stores' => Store::getAll(), 'brands' => $store->getBrands(), 'all_brands' => Brands::getAll()));
-   });
+        $brand = Brand::find($id);
+        return $app['twig']->render('brand.html.twig', array('brand' => $brand, 'brand_stores' => $brand->getStores(), 'all_stores' => Store::getAll(), 'brands' => Brand::getAll()));
+    });
+
+    $app->post("/brand/{id}", function($id) use ($app) {
+        $brand = Brand::find($id);
+        $store = Store::find($_POST['store_id']);
+        $brand->addStore($store);
+
+        return $app['twig']->render('brand_store.html.twig', array('brand' => $brand, 'brand_stores' => $brand->getStores(), 'all_stores' => Store::getAll(), 'brands' => Brand::getAll()));
+    });
+
+
+
+
+    $app->get("/store/{id}", function($id) use ($app) {
+        $store = Store::find($id);
+        return $app['twig']->render('store.html.twig', array('store' => $store, 'brand_stores' => $store->getBrands(), 'all_brands' => Brand::getAll()));
+    });
 
     $app->get("/store_brand", function() use ($app) {
         return $app['twig']->render('store_brand.html.twig', array('stores' => Store::getAll(), 'brands' => Brand::getAll()));
@@ -58,6 +74,7 @@
 
         return $app['twig']->render('brand_store.html.twig', array('stores' => Store::getAll(), 'brands' => Brand::getAll()));
     });
+
 
     $app->post("/delete_all", function() use ($app) {
         $GLOBALS['DB']->exec("DELETE FROM brands_stores_t;");
