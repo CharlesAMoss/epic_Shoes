@@ -4,48 +4,34 @@
         <meta charset="utf-8">
         <title>Your feet need shoes!</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-
+        <link rel='stylesheet' href='./css/main.css'>
     </head>
     <body>
 
-        <div class="container">
+        <div class="wrapper">
 
-            <div>
+            <div class="container">
 
-                {% if stores is not empty %}
-                    <p>Here are some stores!</p>
-                    <ul>
-                        {% for store in stores %}
-                            <li>{{ store.getStoreName }}</li>
-                            {% set brands = store.getBrands %}
-                                {% for brand in brands %}
-                                    <ul>
-                                        <li>{{ brand.getBrandName }}</li>
-                                    </ul>
-                                    <br/>
-                                {% endfor %}
-                        {% endfor %}
-                    </ul>
-                {% endif %}
+                <header class="page-header">
 
-            </div>
+                    <h1>Shop for Shoes by:</h1>
 
-            <div>
+                </header>
 
-                <form action='/store_brand' method='post'>
-                    <label for='store_name'>Shoe Store:</label>
-                    <input id='store_name' name='store_name' type='text' placeholder='Payless'>
-                    <label for='brand_name'>Brand Name:</label>
-                    <input id='brand_name' name='brand_name' type='text' placeholder='Nike'>
+                <div class="card pull-left">
 
-                    <button type='submit'>Add</button>
-                </form>
+                        <div class="well">
+                            <a href="/store_brand" > stores </a>
+                        </div>
+                </div>
 
-                <form action='/delete_all' method='post'>
-                    <button type='submit'>Clear</button>
-                </form>
+                <div class="card pull-left">
 
-                <p><a href='/'>Home</a></p>
+                        <div class="well">
+                            <a href="/all_brands" > brands </a>
+                        </div>
+
+                </div>
 
             </div>
 

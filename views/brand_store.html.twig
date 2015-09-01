@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <title>To Do List</title>
+
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container">
+
+            {% if brands is not empty %}
+            <h2>Brand with store listing:</h2>
+            <ul>
+                {% for brand in brands %}
+                <li>{{ brand.getBrandName }}</li>
+                {% set stores = brand.getStores %}
+                {% for store in stores %}
+                <ul>
+                    <li>{{ store.getStoreName }}</li>
+                </ul>
+                <br/>
+                {% endfor %}
+                {% endfor %}
+        </ul>
+        {% endif %}
+
+        <h4>Add a Brand</h4>
+
+        <form action='/brand_store' method='post'>
+            {% for brand in brands %}
+            <input id="brand_id" name="brand_id" type="hidden" value="{{ brand.getId }}">
+            {% endfor %}
+            <label for="store_id">Select a Store</label>
+            <select id='store_id' name='store_id' type='text'>
+                {% for store in stores %}
+                <option value="{{ store.getId }}">
+                    {{ store.getStoreName }}
+                </option>
+                {% endfor %}
+            </select>
+
+            <button class="btn btn-success" type='submit'>Add Store</button>
+        </form>
+
+
+        <form action='/delete_all' method='post'>
+            <label>This button will delete all listsings</label>
+            <button class="btn btn-danger" type='submit'>Clear All</button>
+        </form>
+
+        <p><a class="btn btn-primary" href='/'>Home</a></p>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<html>
+<head>
+    {% for brand in brands %}
+    <title>{{ brand.getBrandName }}</title>
+</head>
+<body>
+    <h1>{{ brand.getBrandName }}</h1>
+    {% endfor %}
+
+
+    {% if stores is not empty %}
+        <p>Here are the categories for this task:</p>
+        <ul>
+            {% for store in  stores %}
+                <li>{{ store.getStoreName }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <h4>Add a Store to this Brand:</h4>
+
+    <form action='/brand_store' method='post'>
+        {% for brand in brands %}
+        <input id="brand_id" name="brand_id" type="hidden" value="{{ brand.getId }}">
+        {% endfor %}
+        <label for="store_id">Select a Store</label>
+        <select id='store_id' name='store_id' type='text'>
+            {% for store in stores %}
+            <option value="{{ store.getId }}">
+                {{ store.getStoreName }}
+            </option>
+            {% endfor %}
+        </select>
+
+        <button class="btn btn-success" type='submit'>Add Store</button>
+    </form>
+
+    <form action='/delete_all' method='post'>
+        <label>This button will delete all listsings</label>
+        <button class="btn btn-danger" type='submit'>Clear All</button>
+    </form>
+
+    <p><a href='/all_brands'>more brands</a></p>
+    <p><a href='/'>Home</a></p>
+</body>
+</html>
