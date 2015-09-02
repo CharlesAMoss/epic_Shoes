@@ -1,60 +1,48 @@
 <html>
-
     <head>
-        <meta charset="utf-8">
-        <title>Your feet need shoes!</title>
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
-
+        <title>Your feet need shoes</title>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="./css/main.css">
     </head>
     <body>
-
         <div class="container">
+            <h1>Stores</h1>
 
-            <div>
-
-                {% if stores is not empty %}
-                <p>Here are some stores!</p>
-                <ul>
-                    {% for store in stores %}
-                    <li><a href="/store/{{ store.getId }}">{{ store.getStoreName }}</a></li>
-                    {% set brands = store.getBrands %}
-                    {% for brand in brands %}
-                    <ul>
-                        <li><a href="/brand/{{ brand.getId }}">{{ brand.getBrandName }}</a></li>
-                    </ul>
-                    <br/>
-                    {% endfor %}
-                    {% endfor %}
+            {% if stores is not empty %}
+            <h3>List Stores:</h3>
+            <ul>
+                {% for store in stores %}
+                <li>
+                    <h4>
+                        <strong>
+                            <a href="/store/{{ store.getId }}">{{ store.getStoreName }}</a>
+                        </strong>
+                    </h4>
+                </li>
+                {% endfor %}
             </ul>
+            {% else %}
+            <h3>There are no stores yet!</h3>
             {% endif %}
 
-        </div>
-
-        <div>
-
-            <form action='/store_brand' method='post'>
-                <label for='store_name'>Shoe Store:</label>
-                <input id='store_name' name='store_name' placeholder='Payless' type='text'>
-
-                <button type='submit'>Add</button>
+            <form action="/stores_add_form">
+                <button class="btn btn-default" type="submit">Add Store</button>
             </form>
 
-            <p>
-                <a href='/brand_store'>Add a Brand!</a>
-            </p>
-
-            <form action='/delete_all' method='post'>
-                <button type='submit'>Clear All</button>
+            {% if display_form == true %}
+            <form action="/add_store" method="post">
+                <div class="form-group">
+                    <label for="name">Store Name</label>
+                    <input class="form-control" id="name" name="name" placeholder="Name" required type="text">
+                </div>
+                <button class="btn btn-success" type="submit">Submit</button>
             </form>
+            {% endif %}
+            <br>
 
-            <p>
-                <a href='/'>Home</a>
-            </p>
-
+            <form action="/">
+                <button class="btn btn-default" type="submit">Home</button>
+            </form>
         </div>
-
-    </div>
-
-</body>
-
+    </body>
 </html>

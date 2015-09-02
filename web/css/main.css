@@ -7,40 +7,13 @@ body {
     margin: 0;
     width: 98%;
 }
-.wrapper {
-    margin: 40px auto;
-    width: 560px;
-}
-.card {
-    margin: 0 auto;
-    /* width: 56.25%; */
-    margin: 0 5% 0 10%;
-    border: 1px solid #aab6c3;
-    border-radius: 1px;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(0, 0, 0, .23);
-}
-.card:hover {
-    box-shadow: 0 3px 6px rgba(198, 223, 235, .46), 0 3px 6px rgba(198, 223, 235, .63);
-    border: 1px solid #c6dfeb;
-}
-.well {
-    background-color: #fff;
-    padding: 40px 20px;
-}
-.well a {
-    color: #c5c5c5;
-    font-size: 36px;
-    font-weight: 100;
-    letter-spacing: 1px;
-    line-height: 1;
-}
-.well a:hover {
-    color: #8dbfd7;
+
+h2 a{
+    font-size: 300%;
 }
 
-footer a {
-    width: 560px;
-    margin: .67em 17%;
+.main {
+    padding-bottom: 8rem;
 }
 
 /* bootstap extends */
@@ -48,7 +21,9 @@ footer a {
 h1 {
     font-weight: 200;
     font-style: italic;
+    font-size: 400%;
     margin: .67em 17%;
+    line-height: 70%;
 
 }
 .page-header {

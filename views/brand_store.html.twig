@@ -1,49 +1,51 @@
 <html>
     <head>
-        <title>To Do List</title>
+        <meta charset="utf-8">
+        <title>Your feet need shoes!</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="./css/main.css">
 
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
     </head>
     <body>
         <div class="container">
+            <h1>Shoe Brands</h1>
 
             {% if brands is not empty %}
-            <h2>Brand with store listing:</h2>
+            <h3>List of brands:</h3>
+
             <ul>
                 {% for brand in brands %}
-                <li><a href="/brand/{{ brand.getId }}">{{ brand.getBrandName }}</a></li>
-                {% set stores = brand.getStores %}
-                {% for store in stores %}
-                <ul>
-                    <li><a href="/store/{{ store.getId }}">{{ store.getStoreName }}</a></li>
-                </ul>
-                <br/>
+                <li>
+                    <h4>
+                        <strong>
+                            <a href="/brand/{{ brand.getId }}">{{ brand.getBrandName }}</a>
+                        </strong>
+                    </h4>
+                </li>
                 {% endfor %}
-                {% endfor %}
-        </ul>
-        {% endif %}
+            </ul>
+            {% else %}
+            <h3>There are no brands to list.</h3>
+            {% endif %}
 
-        <h4>Add a Store</h4>
+            <form action="/brand_store_add_form">
+                <button class="btn btn-default" type="submit">Add New Brand</button>
+            </form>
 
-        <form action='/store_brand' method='post'>
-            <label for='brand_name'>Brand Name:</label>
-            <input id='brand_name' name='brand_name' placeholder='Nike' type='text'>
+            {% if display_form == true %}
+            <form action="/add_brand" method="post">
+                <div class="form-group">
+                    <label for="brand_name">Add another brand</label>
+                    <input class="form-control" id="brand_name" name="brand_name" placeholder="Brand Name" required type="text">
+                </div>
+                <button class="btn btn-success" type="submit">Submit</button>
+            </form>
+            {% endif %}
+            <br>
 
-            <button type='submit'>Add</button>
-        </form>
-
-        <p>
-            <a href='/store_brand'>Add a Store!</a>
-        </p>
-
-        <form action='/delete_all' method='post'>
-            <button type='submit'>Clear All</button>
-        </form>
-
-        <p>
-            <a href='/'>Home</a>
-        </p>
-
-    </div>
-</body>
+            <form action="/">
+                <button class="btn btn-default" type="submit">Home</button>
+            </form>
+        </div>
+    </body>
 </html>

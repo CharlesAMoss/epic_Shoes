@@ -20,60 +20,99 @@
         return $app['twig']->render('index.html.twig', array('stores' => Store::getAll(), 'brands' => Brand::getAll()));
     });
 
-    $app->get("/all_brands", function() use ($app) {
-        return $app['twig']->render('all_brands.html.twig', array('stores' => Store::getAll(), 'brands' => Brand::getAll()));
-    });
 
-    $app->get("/brand/{id}", function($id) use ($app) {
-        $brand = Brand::find($id);
-        return $app['twig']->render('brand.html.twig', array('brand' => $brand, 'brand_stores' => $brand->getStores(), 'all_stores' => Store::getAll(), 'brands' => Brand::getAll()));
+    $app->get("/brand_store", function() use ($app) {
+        return $app['twig']->render('brand_store.html.twig', array('brands' => Brand::getAll(), 'display_form' => false));
     });
 
     $app->post("/brand/{id}", function($id) use ($app) {
         $brand = Brand::find($id);
         $store = Store::find($_POST['store_id']);
         $brand->addStore($store);
-
-        return $app['twig']->render('brand_store.html.twig', array('brand' => $brand, 'brand_stores' => $brand->getStores(), 'all_stores' => Store::getAll(), 'brands' => Brand::getAll()));
+        return $app['twig']->render('brand.html.twig', array('brand' => $brand, 'brand_stores' => $brand->getStores(), 'all_stores' => Store::getAll()));
     });
 
+    $app->get("/brand_store_add_form", function() use ($app) {
+        return $app['twig']->render('brand_store.html.twig', array('brands' => Brand::getAll(), 'display_form' => true));
+    });
 
+    $app->post("/add_brand", function() use ($app) {
+        $brand = new Brand($_POST['brand_name']);
+        $brand->save();
+        return $app['twig']->render('brand.html.twig', array('brands' => Brand::getAll(), 'display_form' => false));
+    });
 
+    $app->get("/brand/{id}", function($id) use ($app) {
+        $brand = Brand::find($id);
+        return $app['twig']->render('brand.html.twig', array('brand' => $brand, 'brand_stores' => $brand->getStores(), 'all_stores' => Store::getAll()));
+    });
+
+    $app->post("/brands/{id}", function($id) use ($app) {
+        $brand = Brand::find($id);
+        $store = Store::find($_POST['store_id']);
+        $brand->addStore($store);
+        return $app['twig']->render('brand.html.twig', array('brand' => $brand, 'brand_stores' => $brand->getStores(), 'all_stores' => Store::getAll()));
+    });
+
+    $app->get("/store_brand", function() use ($app) {
+        return $app['twig']->render('store_brand.html.twig', array('stores' => Store::getAll(), 'display_form' => false));
+    });
+
+    $app->get("/stores_add_form", function() use ($app) {
+        return $app['twig']->render('store_brand.html.twig', array('stores' => Store::getAll(), 'display_form' => true));
+    });
+
+    $app->post("/add_store", function() use ($app) {
+        $store = new Store($_POST['name']);
+        $store->save();
+        return $app['twig']->render('store_brand.html.twig', array('stores' => Store::getAll(), 'display_form' => false));
+    });
+
+    $app->get("/store/{id}", function($id) use ($app) {
+        $store = Store::find($id);
+        return $app['twig']->render('store.html.twig', array('store' => $store, 'store_brands' => $store->getBrands(), 'all_brands' => Brand::getAll()));
+    });
+
+    $app->post("/store/{id}", function($id) use ($app) {
+        $store = Store::find($id);
+        $brand = Brand::find($_POST['brand_id']);
+        $store->addBrand($brand);
+        return $app['twig']->render('store.html.twig', array('store' => $store, 'store_brands' => $store->getBrands(), 'all_brands' => Brand::getAll()));
+    });
+
+    $app->get("/edit_store", function() use ($app) {
+        $store = Store::find($_GET['store_id']);
+        return $app['twig']->render('store_edit.html.twig', array('store' => $store));
+    });
+
+    $app->patch("/stores/{id}", function($id) use ($app) {
+        $name = $_POST['name'];
+        $store = Store::find($id);
+        $store->update($name);
+        return $app['twig']->render('store.html.twig', array('store' => $store, 'store_brands' => $store->getBrands(), 'all_brands' => Brand::getAll()));
+    });
+
+    $app->delete("/stores/{id}", function ($id) use ($app) {
+        $store = Store::find($id);
+        $store->delete();
+        return $app['twig']->render('stores.html.twig', array('stores' => Store::getAll(), 'display_form' => false));
+    });
+
+    $app->get("/all_brands", function() use ($app) {
+        return $app['twig']->render('all_brands.html.twig', array('stores' => Store::getAll(), 'brands' => Brand::getAll()));
+    });
 
     $app->get("/store/{id}", function($id) use ($app) {
         $store = Store::find($id);
         return $app['twig']->render('store.html.twig', array('store' => $store, 'brand_stores' => $store->getBrands(), 'all_brands' => Brand::getAll()));
     });
 
-    $app->get("/store_brand", function() use ($app) {
-        return $app['twig']->render('store_brand.html.twig', array('stores' => Store::getAll(), 'brands' => Brand::getAll()));
-    });
 
-    $app->post("/store_brand", function() use ($app) {
-        $store_name = $_POST['store_name'];
-        $store = new Store($store_name, $id = null);
-        $store->save();
 
-        $brand_name = $_POST['brand_name'];
-        $brand = new Brand($brand_name, $id = null);
-        $brand->save();
 
-        $result = $store->addBrand($brand);
 
-        return $app['twig']->render('store_brand.html.twig', array('stores' => Store::getAll(), 'brands' => Brand::getAll()));
-    });
 
-    $app->get("/brand_store", function() use ($app) {
-        return $app['twig']->render('brand_store.html.twig', array('stores' => Store::getAll(), 'brands' => Brand::getAll()));
-    });
 
-    $app->post("/brand_store", function() use ($app) {
-        $brand = Brand::find($_POST['brand_id']);
-        $store = Store::find($_POST['store_id']);
-        $brand->addStore($store);
-
-        return $app['twig']->render('brand_store.html.twig', array('stores' => Store::getAll(), 'brands' => Brand::getAll()));
-    });
 
 
     $app->post("/delete_all", function() use ($app) {
