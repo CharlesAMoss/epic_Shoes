@@ -2,16 +2,18 @@
     <head>
         <meta charset="utf-8">
         <title>Your feet need shoes!</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-        <link rel="stylesheet" href="./css/main.css">
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+        <link href="./css/main.css" rel="stylesheet">
 
     </head>
     <body>
+
         <div class="container">
             <h1>Shoe Brands</h1>
 
             {% if brands is not empty %}
             <h3>List of brands:</h3>
+            <p>- click for more info -</p>
 
             <ul>
                 {% for brand in brands %}
@@ -47,5 +49,6 @@
                 <button class="btn btn-default" type="submit">Home</button>
             </form>
         </div>
+
     </body>
 </html>

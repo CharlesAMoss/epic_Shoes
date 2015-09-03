@@ -2,14 +2,16 @@
     <head>
         <title>Your feet need shoes</title>
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="./css/main.css">
+        <link href="./css/main.css" rel="stylesheet">
     </head>
     <body>
+
         <div class="container">
             <h1>Stores</h1>
 
             {% if stores is not empty %}
             <h3>List Stores:</h3>
+            <p>- click for more info -</p>
             <ul>
                 {% for store in stores %}
                 <li>
@@ -44,5 +46,6 @@
                 <button class="btn btn-default" type="submit">Home</button>
             </form>
         </div>
+
     </body>
 </html>

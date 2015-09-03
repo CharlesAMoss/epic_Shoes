@@ -16,6 +16,10 @@ h2 a{
     padding-bottom: 8rem;
 }
 
+li {
+    list-style: none;
+}
+
 /* bootstap extends */
 
 h1 {
@@ -26,6 +30,12 @@ h1 {
     line-height: 70%;
 
 }
+
+.form-control {
+    width: 400px;
+
+}
+
 .page-header {
     border-bottom: none;
 }

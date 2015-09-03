@@ -1,40 +1,52 @@
 <html>
     <head>
+
         <meta charset="utf-8">
         <title>Your feet need shoes!</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-        <link rel="stylesheet" href="./css/main.css">
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+        <link href="./css/main.css" rel="stylesheet">
+
     </head>
     <body>
+
         <div class="container">
             <h1>{{ brand.getBrandName }}</h1>
 
             {% if brand_stores is not empty %}
-                <h3>List of stores where {{ brand.getBrandName }} is availble:</h3>
-                <ul>
-                    {% for store in brand_stores %}
-                        <li><h4><strong><a href="/store/{{ store.getId }}">{{ store.getStoreName }}</a></strong></h4></li>
-                    {% endfor %}
-                </ul>
+            <h3>List of stores where {{ brand.getBrandName }} are availble:</h3>
+            <ul>
+                {% for store in brand_stores %}
+                <li>
+                    <h4>
+                        <strong>
+                            <a href="/store/{{ store.getId }}">{{ store.getStoreName }}</a>
+                        </strong>
+                    </h4>
+                </li>
+                {% endfor %}
+            </ul>
             {% else %}
-                <h3>There are no stores yet!</h3>
+            <h3>There are no stores yet!</h3>
             {% endif %}
 
             <h3>Add {{ brand.getBrandName }} to a store:</h3>
+
             <form action="/brand/{{ brand.getId }}" method="post">
                 <select class="form-control" id="store_id" name="store_id">
-                        {% for store in all_stores %}
-                            <option value="{{ store.getId }}">{{ store.getStoreName }}</option>
-                        {% endfor %}
-                    </select>
-                    <br>
-                <button type="submit" class="btn btn-success">Submit</button>
+                    {% for store in all_stores %}
+                    <option value="{{ store.getId }}">{{ store.getStoreName }}</option>
+                    {% endfor %}
+                </select>
+                <br>
+                <button class="btn btn-success" type="submit">Submit</button>
             </form>
             <br>
 
             <form action="/">
-                <button type="submit" class="btn btn-default">Home</button>
+                <button class="btn btn-default" type="submit">Home</button>
             </form>
+
         </div>
+
     </body>
 </html>

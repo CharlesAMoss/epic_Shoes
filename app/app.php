@@ -14,6 +14,8 @@
     use Symfony\Component\HttpFoundation\Request;
     Request::enableHttpMethodParameterOverride();
 
+
+
     $app->register(new Silex\Provider\TwigServiceProvider(),array('twig.path' => __DIR__.'/../views'));
 
     $app->get("/", function() use ($app) {
@@ -80,23 +82,14 @@
         return $app['twig']->render('store.html.twig', array('store' => $store, 'store_brands' => $store->getBrands(), 'all_brands' => Brand::getAll()));
     });
 
-    $app->get("/edit_store", function() use ($app) {
-        $store = Store::find($_GET['store_id']);
-        return $app['twig']->render('store_edit.html.twig', array('store' => $store));
-    });
-
-    $app->patch("/stores/{id}", function($id) use ($app) {
-        $name = $_POST['name'];
-        $store = Store::find($id);
-        $store->update($name);
-        return $app['twig']->render('store.html.twig', array('store' => $store, 'store_brands' => $store->getBrands(), 'all_brands' => Brand::getAll()));
-    });
-
     $app->delete("/stores/{id}", function ($id) use ($app) {
         $store = Store::find($id);
         $store->delete();
         return $app['twig']->render('stores.html.twig', array('stores' => Store::getAll(), 'display_form' => false));
     });
+
+
+
 
     $app->get("/all_brands", function() use ($app) {
         return $app['twig']->render('all_brands.html.twig', array('stores' => Store::getAll(), 'brands' => Brand::getAll()));
