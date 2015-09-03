@@ -6,7 +6,7 @@
 
 ## Description
 
-An input field accepts a shoe store's name of and adds it to a list. Another input field accepts the name of brands of shoes. The users can make connections of "stores" and "brands". The user can view either by "brand" or "store" and see the relationships they have set.  
+An input field accepts a shoe store's name of and adds it to a list. Another input field accepts the name of brands of shoes. The users can make connections of "stores" and "brands". The user can view either by "brand" or "store" and see the relationships they have set. A clear all button can be found on the home page. ( this will clear all entries from the database, handle with care ).   
 
 ## Setup
 When installing from source you may notice that once you have cloned this repo, that this project makes use of a PHP Dependency Manager: [Composer](https://github.com/composer/composer). Once you have Composer installed you can acquire any project dependencies via your shell by entering:
@@ -43,11 +43,11 @@ This project is incomplete:
 
 **Task left to do:**
 * get my last 2 store tests to pass **completed 8/29**
-* complete the brand tests **completed 8/29**
-* finish client routes **completed 9/1**
-* finish client twig **completed 9/1**
-* confirm features
-* polish
+* complete the brand tests          **completed 8/29**
+* finish client routes              **completed 9/1**
+* finish client twig                **completed 9/1**
+* confirm features                  **completed 9/2**
+
 
 ### Legal
 

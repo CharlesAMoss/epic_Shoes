@@ -14,8 +14,6 @@
     use Symfony\Component\HttpFoundation\Request;
     Request::enableHttpMethodParameterOverride();
 
-
-
     $app->register(new Silex\Provider\TwigServiceProvider(),array('twig.path' => __DIR__.'/../views'));
 
     $app->get("/", function() use ($app) {
@@ -82,15 +80,6 @@
         return $app['twig']->render('store.html.twig', array('store' => $store, 'store_brands' => $store->getBrands(), 'all_brands' => Brand::getAll()));
     });
 
-    $app->delete("/stores/{id}", function ($id) use ($app) {
-        $store = Store::find($id);
-        $store->delete();
-        return $app['twig']->render('stores.html.twig', array('stores' => Store::getAll(), 'display_form' => false));
-    });
-
-
-
-
     $app->get("/all_brands", function() use ($app) {
         return $app['twig']->render('all_brands.html.twig', array('stores' => Store::getAll(), 'brands' => Brand::getAll()));
     });
@@ -99,14 +88,6 @@
         $store = Store::find($id);
         return $app['twig']->render('store.html.twig', array('store' => $store, 'brand_stores' => $store->getBrands(), 'all_brands' => Brand::getAll()));
     });
-
-
-
-
-
-
-
-
 
     $app->post("/delete_all", function() use ($app) {
         $GLOBALS['DB']->exec("DELETE FROM brands_stores_t;");
