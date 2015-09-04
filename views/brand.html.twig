@@ -10,10 +10,14 @@
     <body>
 
         <div class="container">
+            {% for brand in brands %}
             <h1>{{ brand.getBrandName }}</h1>
+            {% endfor %}
 
             {% if brand_stores is not empty %}
+            {% for brand in brands %}
             <h3>List of stores where {{ brand.getBrandName }} are availble:</h3>
+            {% endfor %}
             <ul>
                 {% for store in brand_stores %}
                 <li>
@@ -29,9 +33,13 @@
             <h3>There are no stores yet!</h3>
             {% endif %}
 
+            {% for brand in brands %}
             <h3>Add {{ brand.getBrandName }} to a store:</h3>
+            {% endfor %}
 
+            {% for brand in brands %}
             <form action="/brand/{{ brand.getId }}" method="post">
+            {% endfor %}
                 <select class="form-control" id="store_id" name="store_id">
                     {% for store in all_stores %}
                     <option value="{{ store.getId }}">{{ store.getStoreName }}</option>
