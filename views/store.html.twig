@@ -38,7 +38,12 @@
                 <button class="btn btn-success" type="submit">Submit</button>
             </form>
             <br>
-
+            {% for store in stores %}
+            <form action="/edit_store">
+               <input id="store_id" name="store_id" type="hidden" value="{{ store.getId }}">
+               <button type="submit" class="btn btn-info">Edit {{ store.getStoreName }}</button>
+           </form>
+           {% endfor %}
 
             <form action="/">
                 <button class="btn btn-default" type="submit">Home</button>

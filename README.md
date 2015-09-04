@@ -44,9 +44,9 @@ This project is incomplete:
 **Task left to do:**
 * get my last 2 store tests to pass **completed 8/29**
 * complete the brand tests          **completed 8/29**
-* finish client routes              **completed 9/1**
-* finish client twig                **completed 9/1**
-* confirm features                  **completed 9/2**
+* finish client routes              **completed 9/3**
+* finish client twig                **completed 9/3**
+* confirm features                  **completed 9/3**
 
 
 ### Legal

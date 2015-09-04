@@ -6,7 +6,7 @@
 
     $app = new Silex\Application();
     $app['debug']  = true;
-    $server = 'mysql:host=localhost:8889;dbname=shoes';
+    $server = 'mysql:host=localhost;dbname=shoes';
     $username = 'root';
     $password = 'root';
     $DB = new PDO($server, $username, $password);
@@ -19,7 +19,6 @@
     $app->get("/", function() use ($app) {
         return $app['twig']->render('index.html.twig', array('stores' => Store::getAll(), 'brands' => Brand::getAll()));
     });
-
 
     $app->get("/brand_store", function() use ($app) {
         return $app['twig']->render('brand_store.html.twig', array('brands' => Brand::getAll(), 'display_form' => false));
@@ -70,14 +69,14 @@
 
     $app->get("/store/{id}", function($id) use ($app) {
         $store = Store::find($id);
-        return $app['twig']->render('store.html.twig', array('store' => $store, 'store_brands' => $store->getBrands(), 'all_brands' => Brand::getAll()));
+        return $app['twig']->render('store.html.twig', array('store' => $store, 'store_brands' => $store->getBrands(), 'all_brands' => Brand::getAll(), 'stores' => Store::getAll()));
     });
 
     $app->post("/store/{id}", function($id) use ($app) {
         $store = Store::find($id);
         $brand = Brand::find($_POST['brand_id']);
         $store->addBrand($brand);
-        return $app['twig']->render('store.html.twig', array('store' => $store, 'store_brands' => $store->getBrands(), 'all_brands' => Brand::getAll()));
+        return $app['twig']->render('store.html.twig', array('store' => $store, 'store_brands' => $store->getBrands(), 'all_brands' => Brand::getAll(), 'stores' => Store::getAll()));
     });
 
     $app->get("/all_brands", function() use ($app) {
@@ -86,7 +85,25 @@
 
     $app->get("/store/{id}", function($id) use ($app) {
         $store = Store::find($id);
-        return $app['twig']->render('store.html.twig', array('store' => $store, 'brand_stores' => $store->getBrands(), 'all_brands' => Brand::getAll()));
+        return $app['twig']->render('store.html.twig', array('store' => $store, 'brand_stores' => $store->getBrands(), 'all_brands' => Brand::getAll(),'stores' => Store::getAll()));
+    });
+
+    $app->get("/edit_store", function() use ($app) {
+        $store = Store::find($_GET['store_id']);
+        return $app['twig']->render('edit_store.html.twig', array('store' => $store, 'stores' => Store::getAll()));
+    });
+
+    $app->patch("/stores/{id}", function($id) use ($app) {
+        $name = $_POST['name'];
+        $store = Store::find($id);
+        $store->update($name);
+        return $app['twig']->render('store.html.twig', array('store' => $store, 'store_brands' => $store->getBrands(), 'all_brands' => Brand::getAll(), 'stores' => Store::getAll()));
+    });
+
+    $app->delete("/stores/{id}", function ($id) use ($app) {
+        $store = Store::find($id);
+        $store->delete();
+        return $app['twig']->render('store_brand.html.twig', array('stores' => Store::getAll(), 'display_form' => false));
     });
 
     $app->post("/delete_all", function() use ($app) {
